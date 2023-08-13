@@ -24,3 +24,6 @@ yarn-error.log*
 # Arquivos específicos do sistema operacional
 .DS_Store
 Thumbs.db
+
+# banco
+tmp/app.db
