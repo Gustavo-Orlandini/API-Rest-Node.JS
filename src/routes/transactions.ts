@@ -56,9 +56,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
         }
     })
 
-    app.post('/', {
-        preHandler: [checkSessionIdExists],
-    }, async (request, reply) => {
+    app.post('/', async (request, reply) => {
 
         const createTransactionBodySchema = z.object({
             title: z.string(),
@@ -74,7 +72,6 @@ export async function transactionsRoutes(app: FastifyInstance) {
 
         if (!sessionId) {
             sessionId = randomUUID()
-
             reply.cookie('sessionId', sessionId, {
                 path: '/',
                 maxAge: 1000 * 60 * 60 * 24 * 7, //7 days

@@ -14,12 +14,27 @@ describe('Transactions routes', () => {
     test('User can create a new transaction', async () => {
         await request(app.server)
             .post('/transactions')
-            .set('Cookie', 'sessionId=anywayCookieToRunTestOnly')
             .send({
                 title: 'New transaction',
                 amount: 5000,
                 type: 'credit'
             })
             .expect(201)
+    })
+
+    test('Should be able to list all transactions', async () => {
+        const createTransactionResponse = await request(app.server)
+            .post('/transactions')
+            .send({
+                title: 'New transaction',
+                amount: 5000,
+                type: 'credit'
+            })
+        const cookies = createTransactionResponse.get('Set-Cookie')
+
+        await request(app.server)
+            .get('/transactions')
+            .set('Cookie', cookies)
+            .expect(200)
     })
 })
