@@ -27,3 +27,4 @@ Thumbs.db
 
 # banco
 db/app.db
+.env.test
