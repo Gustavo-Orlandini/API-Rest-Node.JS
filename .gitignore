@@ -26,5 +26,5 @@ yarn-error.log*
 Thumbs.db
 
 # banco
-db/app.db
+db/*.db
 .env.test
